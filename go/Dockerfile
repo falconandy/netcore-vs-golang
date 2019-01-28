@@ -1,7 +1,7 @@
 FROM golang:1.11.2
 
-WORKDIR /go/src/app
+WORKDIR /app
 COPY . .
-RUN go install ./...
+RUN go build -o app
 
-CMD ["/go/bin/app"]
+CMD ["./app"]

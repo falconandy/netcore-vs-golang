@@ -1,12 +1,13 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"html"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/json-iterator/go"
 )
 
 type Response struct {
@@ -22,6 +23,7 @@ func main() {
 		MaxIdleConnsPerHost: 4000,
 	}
 	client := &http.Client{Transport: tr}
+	json := jsoniter.ConfigCompatibleWithStandardLibrary
 
 	http.HandleFunc("/test", func(w http.ResponseWriter, r *http.Request) {
 		rsp, err := client.Get(url)
